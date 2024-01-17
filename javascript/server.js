@@ -5,23 +5,23 @@ const bodyParser = require("body-parser");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Setup nodemailer
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "your-email@gmail.com", // Replace with your email
-    pass: "your-email-password", // Replace with your email password
-  },
-});
-
 app.use(bodyParser.json());
 
 app.post("/send-email", (req, res) => {
   const { name, email, message } = req.body;
 
+  // Replace the following with your actual email address and SMTP configuration
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "ravkeerat.singh02@gmail.com",
+      //   pass: "your-email-password",
+    },
+  });
+
   const mailOptions = {
-    from: "your-email@gmail.com", // Replace with your email
-    to: "ravkeerat.singh02@gmail.com", // Replace with your recipient email
+    from: "your-email@gmail.com",
+    to: "ravkeerat.singh02@gmail.com",
     subject: "New Contact Form Submission",
     html: `<p>Name: ${name}</p><p>Email: ${email}</p><p>Message: ${message}</p>`,
   };
