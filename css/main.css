@@ -652,3 +652,29 @@ section .row span {
     transform: none;
   }
 }
+/* project section - detai; */
+.project-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Adjust as needed */
+  margin: -15px; /* Adjust as needed */
+}
+
+.project-wrapper__text {
+  flex: 0 0 calc(33.333% - 30px); Adjust as needed
+  margin: 15px; /* Adjust as needed */
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .project-wrapper__text {
+    flex: 0 0 calc(50% - 20px); /* Adjust as needed for smaller devices */
+  }
+}
+
+@media (max-width: 480px) {
+  .project-wrapper__text {
+    flex: 0 0 100%; /* Adjust for smaller screens, stacking projects on top of each other */
+    margin: 15px 0; /* Add margin between stacked projects */
+  }
+}
