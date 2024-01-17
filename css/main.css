@@ -678,3 +678,30 @@ section .row span {
     margin: 15px 0; /* Add margin between stacked projects */
   }
 }
+/* form - contact  */
+#contact-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+}
+
+.form-buttons {
+  text-align: center;
+}
+
+.cta-btn {
+  padding: 10px 20px;
+}
+
+
