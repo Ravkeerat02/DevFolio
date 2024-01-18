@@ -1,11 +1,14 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8008;
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors()); // Enable CORS
 
 app.post("/send-email", (req, res) => {
   const { name, email, message } = req.body;
@@ -14,14 +17,14 @@ app.post("/send-email", (req, res) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "ravkeerat.singh02@gmail.com",
-      //   pass: "your-email-password",
+      user: process.env.USER_EMAIL,
+      pass: process.env.USER_PASSWORD,
     },
   });
 
   const mailOptions = {
-    from: "your-email@gmail.com",
-    to: "ravkeerat.singh02@gmail.com",
+    from: email,
+    to: process.env.USER_EMAIL,
     subject: "New Contact Form Submission",
     html: `<p>Name: ${name}</p><p>Email: ${email}</p><p>Message: ${message}</p>`,
   };
@@ -32,10 +35,10 @@ app.post("/send-email", (req, res) => {
       return res
         .status(500)
         .json({ success: false, message: "Error sending email" });
+    } else {
+      console.log("Email sent: " + info.response);
+      res.json({ success: true, message: "Email sent successfully" });
     }
-
-    console.log("Email sent: " + info.response);
-    res.json({ success: true, message: "Email sent successfully" });
   });
 });
 

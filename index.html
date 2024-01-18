@@ -146,7 +146,8 @@
       <div class="container">
         <h2 class="section-title">Contact</h2>
         <div class="contact-wrapper">
-          <form id="contact-form" onSubmit="submitForm(event)" action="mailto:ravkeerat.singh02@gmail.com" method="post" enctype="text/plain">
+          <form id="contact-form" onsubmit="submitForm(event)" method="post" action=
+          ">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
             <label for="email">Email:</label>
@@ -207,29 +208,41 @@
   </body>
 </html>
 <script>
+
   function submitForm(event) {
     event.preventDefault();
-
-    var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
-    var message = document.getElementById('message').value;
-
+  
+    var nameInput = document.getElementById('name');
+    var emailInput = document.getElementById('email');
+    var messageInput = document.getElementById('message');
+    var notification = document.getElementById('notification');
+  
+    // Check if elements are found in the DOM
+    if (!nameInput || !emailInput || !messageInput || !notification) {
+      console.error('Error: One or more required elements not found in the DOM.');
+      return;
+    }
+  
+    var name = nameInput.value;
+    var email = emailInput.value;
+    var message = messageInput.value;
+  
     if (!name || !email || !message) {
       alert('Please fill in all fields.');
       return;
     }
-
+  
     // Clear the form
     document.getElementById('contact-form').reset();
-
+  
     // Display a notification
-    var notification = document.getElementById('notification');
     notification.style.display = 'block';
     notification.innerText = 'Form submitted successfully!';
-
+  
     // Delay for a few seconds and hide the notification
-    setTimeout(function() {
+    setTimeout(function () {
       notification.style.display = 'none';
     }, 3000);
   }
-</script>
+
+</script>  
